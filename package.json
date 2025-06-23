@@ -1,7 +1,7 @@
 {
   "name": "purchase",
   "version": "1.0.0",
-  "main": "purchase.js",
+  "main": "progress.js",
   "type": "module",
   "scripts": {
     "dev": "nodemon index"
@@ -11,7 +11,7 @@
   "description": "",
   "dependencies": {
     "axios": "",
-    "set-cookie-parser": "",
+    "cookie-parser": "",
     "date-fns": "^4.1.0",
     "dotenv": "^16.5.0",
     "express": "",
