@@ -67,6 +67,53 @@ app.use(fileUpload({
 
 app.use(express.json()); // long application/json
 
+app.get('/auth', (req, res) => {
+  res.render('authorization', {
+    title: 'Authorization'
+  });
+});
+
+app.get('/user', (req, res) => {
+  res.render('applications', {
+    title: 'My requests'
+  });
+});
+app.get('/manager', (req, res) => {
+  res.render('all_applic', {
+    title: 'Requests'
+  });
+});
+
+app.get('/arch', (req, res) => {
+  res.render('archive', {
+    title: 'Archive'
+  });
+});
+
+app.get('/base', (req, res) => {
+  res.render('base', {
+    title: 'Base of users'
+  });
+});
+
+app.get('/create', (req, res) => {
+  res.render('creating', {
+    title: 'Create request'
+  });
+});
+
+app.get('/edit', (req, res) => {
+  res.render('editing', {
+    title: 'Editing'
+  });
+});
+
+app.get('/repeat', (req, res) => {
+  res.render('repeat', {
+    title: 'Repeat request'
+  });
+});
+
 async function start() {
     try {
         app.listen(process.env.PORT, () => {
