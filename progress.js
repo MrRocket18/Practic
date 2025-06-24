@@ -67,7 +67,7 @@ app.use(fileUpload({
 
 app.use(express.json()); // long application/json
 
-app.get('/auth', (req, res) => {
+app.get('/', (req, res) => {
   res.render('authorization', {
     title: 'Authorization'
   });
