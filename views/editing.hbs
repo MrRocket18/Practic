@@ -1,1 +1,92 @@
-<!Страница редактирования заявки>
+{{!-- <!Страница редактирования заявки> --}}
+
+<div class="edit-container">
+  <div class="row">
+    <div class="col s12 m6 offset-m3">
+      <div class="card">
+        <div class="card-content">
+          <h1 class="edit-title">Редактирование заявки</h1>
+          
+          <form class="edit-form" action="/edit" method="POST">
+            <div class="input-field">
+              <label>
+                <input type="checkbox" class="filled-in toggle-edit" data-target="title" />
+                <span>Название</span>
+              </label>
+              <input id="title" name="title" type="text" class="validate" disabled>
+            </div>
+            
+            <div class="input-field">
+              <label>
+                <input type="checkbox" class="filled-in toggle-edit" data-target="quantity" checked="checked" />
+                <span>Количество</span>
+              </label>
+              <input id="quantity" name="quantity" type="number" class="validate" min="1" required>
+            </div>
+            
+            <div class="input-field">
+              <label>
+                <input type="checkbox" class="filled-in toggle-edit" data-target="price" />
+                <span>Цена</span>
+              </label>
+              <input id="price" name="price" type="number" class="validate" min="0" step="0.01" disabled>
+            </div>
+            
+            <div class="input-field">
+              <label>
+                <input type="checkbox" class="filled-in toggle-edit" data-target="link" />
+                <span>Ссылка</span>
+              </label>
+              <input id="link" name="link" type="url" class="validate" disabled>
+            </div>
+            
+            <div class="input-field">
+              <label>
+                <input type="checkbox" class="filled-in toggle-edit" data-target="date" />
+                <span>Дата</span>
+              </label>
+              <input id="date" name="date" type="text" class="datepicker" disabled>
+            </div>
+            
+            <button class="btn waves-effect waves-light submit-btn" type="submit">
+              СОХРАНИТЬ ИЗМЕНЕНИЯ
+              <i class="material-icons right">save</i>
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const dateElems = document.querySelectorAll('.datepicker');
+    M.Datepicker.init(dateElems, {
+      format: 'dd.mm.yyyy',
+      autoClose: true,
+      i18n: {
+        cancel: 'Отмена',
+        clear: 'Очистить',
+        done: 'Выбрать',
+        months: ['Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь', 'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь'],
+        monthsShort: ['Янв', 'Фев', 'Мар', 'Апр', 'Май', 'Июн', 'Июл', 'Авг', 'Сен', 'Окт', 'Ноя', 'Дек'],
+        weekdays: ['Воскресенье', 'Понедельник', 'Вторник', 'Среда', 'Четверг', 'Пятница', 'Суббота'],
+        weekdaysShort: ['Вс', 'Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб'],
+        weekdaysAbbrev: ['В', 'П', 'В', 'С', 'Ч', 'П', 'С']
+      }
+    });
+
+    document.querySelectorAll('.toggle-edit').forEach(checkbox => {
+      checkbox.addEventListener('change', function() {
+        const targetId = this.getAttribute('data-target');
+        const inputField = document.getElementById(targetId);
+        inputField.disabled = !this.checked;
+        
+        if (!inputField.disabled) {
+          inputField.focus();
+        }
+      });
+    });
+  });
+</script>

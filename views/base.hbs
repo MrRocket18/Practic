@@ -1,1 +1,126 @@
-<!Страница базы пользователей>
+<div class="users-container">
+  <div class="header-section">
+    <h1 class="page-title">База пользователей</h1>
+    
+    <div class="filter-section">
+      <div class="filter-item active">
+        <span>Все пользователи</span>
+      </div>
+      <div class="filter-item">
+        <span>Активные</span>
+      </div>
+      <div class="filter-item">
+        <span>Неактивные</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="users-table">
+    <table class="highlight responsive-table">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Имя</th>
+          <th>Email</th>
+          <th>Телефон</th>
+          <th>Активность</th>
+          <th>Статус</th>
+          <th>Действия</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>1</td>
+          <td>Иванов Иван</td>
+          <td><a href="mailto:ivanov@example.com">ivanov@example.com</a></td>
+          <td><a href="tel:+71234567890">+7 (123) 456-7890</a></td>
+          <td>5 заказов</td>
+          <td><span class="status-badge active">Активен</span></td>
+          <td>
+            <a class="btn-flat waves-effect tooltipped" data-tooltip="Редактировать" data-position="top">
+              <i class="material-icons">edit</i>
+            </a>
+            <a class="btn-flat waves-effect tooltipped" data-tooltip="Удалить" data-position="top">
+              <i class="material-icons">delete</i>
+            </a>
+          </td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td>Петрова Анна</td>
+          <td><a href="mailto:petrova@example.com">petrova@example.com</a></td>
+          <td><a href="tel:+79876543210">+7 (987) 654-3210</a></td>
+          <td>3 заказа</td>
+          <td><span class="status-badge inactive">Неактивен</span></td>
+          <td>
+            <a class="btn-flat waves-effect tooltipped" data-tooltip="Редактировать" data-position="top">
+              <i class="material-icons">edit</i>
+            </a>
+            <a class="btn-flat waves-effect tooltipped" data-tooltip="Удалить" data-position="top">
+              <i class="material-icons">delete</i>
+            </a>
+          </td>
+        </tr>
+        <tr>
+          <td>3</td>
+          <td>Сидоров Дмитрий</td>
+          <td><a href="mailto:sidorov@example.com">sidorov@example.com</a></td>
+          <td><a href="tel:+75551234567">+7 (555) 123-4567</a></td>
+          <td>Нет заказов</td>
+          <td><span class="status-badge pending">На проверке</span></td>
+          <td>
+            <a class="btn-flat waves-effect tooltipped" data-tooltip="Редактировать" data-position="top">
+              <i class="material-icons">edit</i>
+            </a>
+            <a class="btn-flat waves-effect tooltipped" data-tooltip="Удалить" data-position="top">
+              <i class="material-icons">delete</i>
+            </a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div id="delete-modal" class="modal">
+  <div class="modal-content">
+    <h4>Подтверждение удаления</h4>
+    <p>Вы уверены, что хотите удалить этого пользователя?</p>
+  </div>
+  <div class="modal-footer">
+    <a href="#!" class="modal-close waves-effect waves-green btn-flat">Отмена</a>
+    <a href="#!" class="waves-effect waves-red btn-flat">Удалить</a>
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    M.AutoInit();
+    
+    const tooltips = document.querySelectorAll('.tooltipped');
+    M.Tooltip.init(tooltips);
+    
+    const modal = document.querySelectorAll('.modal');
+    M.Modal.init(modal);
+    
+    document.querySelectorAll('.filter-item').forEach(item => {
+      item.addEventListener('click', function() {
+        document.querySelectorAll('.filter-item').forEach(i => i.classList.remove('active'));
+        this.classList.add('active');
+      });
+    });
+    
+    document.querySelectorAll('.btn-flat .material-icons').forEach(btn => {
+      if(btn.textContent === 'delete') {
+        btn.closest('a').addEventListener('click', function(e) {
+          e.preventDefault();
+          const instance = M.Modal.getInstance(document.getElementById('delete-modal'));
+          instance.open();
+        });
+      }
+    });
+  });
+</script>
+

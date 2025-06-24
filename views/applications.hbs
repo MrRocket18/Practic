@@ -1,1 +1,167 @@
-<!Страница пользователя с заявками>
+{{!-- <!Страница пользователя с заявками> --}}
+
+
+{{!-- пока что с статичными данными --}}
+
+
+<div class="applications-container">
+  <div class="top-panel">
+    <div class="row valign-wrapper">
+      <div class="col s8">
+        <h1 class="applications-title">Мои заявки</h1>
+      </div>
+      <div class="col s4 right-align">
+        <div class="search-container" style="display: inline-block; margin-right: 20px;">
+          <div class="input-field" style="display: inline-block; margin: 0;">
+            <input id="search" type="search" placeholder="Поиск...">
+            <label class="label-icon" for="search"><i class="material-icons">search</i></label>
+          </div>
+        </div>
+        <a href="#" class="btn waves-effect waves-light" style="margin-right: 20px;">Создать заявку</a>
+        <div class="user-info" style="position: relative; display: inline-block;">
+          <a class="dropdown-trigger" href="#" data-target="user-dropdown">
+            <div style="text-align: right;">
+              <div style="font-weight: bold;">Иванов Иван Иванович</div>
+              <div>Менеджер</div>
+            </div>
+            <i class="material-icons right">arrow_drop_down</i>
+          </a>
+          <ul id="user-dropdown" class="dropdown-content">
+            <li><a href="#!">Профиль</a></li>
+            <li class="divider" tabindex="-1"></li>
+            <li><a href="#!" class="red-text">Log out</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="table-responsive">
+    <table class="highlight striped sortable">
+      <thead>
+        <tr>
+          <th class="sortable" data-column="name">Название <i class="material-icons sort-icon">unfold_more</i></th>
+          <th class="sortable" data-column="quantity">Количество <i class="material-icons sort-icon">unfold_more</i></th>
+          <th class="sortable" data-column="price">Цена <i class="material-icons sort-icon">unfold_more</i></th>
+          <th>Ссылка</th>
+          <th>Желаемая дата</th>
+          <th class="sortable" data-column="status">Статус <i class="material-icons sort-icon">unfold_more</i></th>
+          <th>Предполагаемая дата поставки</th>
+          <th>Комментарий</th>
+          <th>Действия</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Орхидея</td>
+          <td>2</td>
+          <td>1 500 ₽</td>
+          <td><a href="#" class="btn-flat">ССЫЛКА</a></td>
+          <td>15.05.2023</td>
+          <td><span class="status-badge new">Новая</span></td>
+          <td>-</td>
+          <td>Белый цветок</td>
+          <td>
+            <a href="#" class="btn-floating btn-small waves-effect waves-light green">
+              <i class="material-icons">check</i>
+            </a>
+          </td>
+        </tr>
+        <tr>
+          <td>Горшок керамический</td>
+          <td>3</td>
+          <td>800 ₽</td>
+          <td><a href="#" class="btn-flat">ССЫЛКА</a></td>
+          <td>20.05.2024</td>
+          <td><span class="status-badge pending">Ожидается доставка</span></td>
+          <td>18.05.2024</td>
+          <td>Белый. Диаметр 15 см</td>
+          <td>
+            <a href="#" class="btn-floating btn-small waves-effect waves-light green">
+              <i class="material-icons">check</i>
+            </a>
+          </td>
+        </tr>
+        <tr>
+          <td>Удобрение для цветов</td>
+          <td>1</td>
+          <td>350 ₽</td>
+          <td><a href="#" class="btn-flat">ССЫЛКА</a></td>
+          <td>10.05.2024</td>
+          <td><span class="status-badge completed">Выполнено</span></td>
+          <td>08.05.2024</td>
+          <td>Для орхидей</td>
+          <td>
+            <a href="#" class="btn-floating btn-small waves-effect waves-light green">
+              <i class="material-icons">check</i>
+            </a>
+          </td>
+        </tr>
+        <tr>
+          <td>Герберы</td>
+          <td>5</td>
+          <td>1 200 ₽</td>
+          <td><a href="#" class="btn-flat">ССЫЛКА</a></td>
+          <td>25.05.2024</td>
+          <td><span class="status-badge cancelled">Отменено</span></td>
+          <td>-</td>
+          <td>Розовые</td>
+          <td>
+            <a href="#" class="btn-floating btn-small waves-effect waves-light green">
+              <i class="material-icons">check</i>
+            </a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    M.AutoInit();
+    
+    var dropdowns = document.querySelectorAll('.dropdown-trigger');
+    M.Dropdown.init(dropdowns, {
+      coverTrigger: false,
+      constrainWidth: false
+    });
+    
+    function sortTable(columnIndex, ascending) {
+      const table = document.querySelector('.sortable');
+      const tbody = table.querySelector('tbody');
+      const rows = Array.from(tbody.querySelectorAll('tr'));
+      
+      rows.sort((a, b) => {
+        const aText = a.cells[columnIndex].textContent.trim();
+        const bText = b.cells[columnIndex].textContent.trim();
+        
+        if (columnIndex === 1 || columnIndex === 2) {
+          const aNum = parseFloat(aText.replace(/[^\d.]/g, ''));
+          const bNum = parseFloat(bText.replace(/[^\d.]/g, ''));
+          return ascending ? aNum - bNum : bNum - aNum;
+        }
+        
+        return ascending 
+          ? aText.localeCompare(bText) 
+          : bText.localeCompare(aText);
+      });
+      
+      rows.forEach(row => tbody.removeChild(row));
+      
+      rows.forEach(row => tbody.appendChild(row));
+    }
+    
+    document.querySelectorAll('.sortable th.sortable').forEach((th, index) => {
+      th.addEventListener('click', () => {
+        const icon = th.querySelector('.sort-icon');
+        const isAscending = icon.textContent === 'arrow_drop_up';
+        
+        icon.textContent = isAscending ? 'arrow_drop_down' : 'arrow_drop_up';
+        
+        sortTable(index, !isAscending);
+      });
+    });
+  });
+</script>
+

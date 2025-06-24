@@ -73,11 +73,18 @@ app.get('/auth', (req, res) => {
   });
 });
 
-app.get('/user', (req, res) => {
+// app.get('/user', (req, res) => {
+//   res.render('applications', {
+//     title: 'My requests'
+//   });
+// });
+
+app.get('/applications', (req, res) => {
   res.render('applications', {
     title: 'My requests'
   });
 });
+
 app.get('/manager', (req, res) => {
   res.render('all_applic', {
     title: 'Requests'

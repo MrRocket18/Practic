@@ -1,1 +1,106 @@
-<!Страница повторной заявки>
+{{!-- <!Страница повторной заявки> --}}
+
+<div class="repeat-container">
+  <div class="row">
+    <div class="col s12 m8 offset-m2">
+      <div class="card">
+        <div class="card-content">
+          <h1 class="repeat-title">Повторная заявка</h1>
+          
+          <div class="original-request">
+            <h2>Исходная заявка</h2>
+            <div class="original-details">
+              <div class="detail-item">
+                <span class="detail-label">Название:</span>
+                <span class="detail-value">Орхидея</span>
+              </div>
+              <div class="detail-item">
+                <span class="detail-label">Количество:</span>
+                <span class="detail-value">2</span>
+              </div>
+              <div class="detail-item">
+                <span class="detail-label">Цена:</span>
+                <span class="detail-value">1 500 ₽</span>
+              </div>
+              <div class="detail-item">
+                <span class="detail-label">Ссылка:</span>
+                <span class="detail-value">
+                  <a href="#" class="teal-text">example.com/product</a>
+                </span>
+              </div>
+              <div class="detail-item">
+                <span class="detail-label">Дата предыдущей заявки:</span>
+                <span class="detail-value">15.05.2023</span>
+              </div>
+              <div class="detail-item">
+                <span class="detail-label">Комментарий:</span>
+                <span class="detail-value">Белый цветок</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="divider"></div>
+
+          <form class="repeat-form" action="/repeat" method="POST">
+            <div class="section">
+              <h3>Название</h3>
+              <div class="input-field">
+                <input id="title" name="title" type="text" value="Орхидея" readonly>
+              </div>
+              <div class="input-field">
+                <input id="price" name="price" type="text" value="1 500 ₽" readonly>
+              </div>
+            </div>
+
+            <div class="divider"></div>
+
+            <div class="section">
+              <h3>Количество</h3>
+              <div class="input-field">
+                <input id="quantity" name="quantity" type="number" value="2" min="1" required>
+              </div>
+              <div class="input-field">
+                <input id="link" name="link" type="url" value="example.com/product" readonly>
+              </div>
+            </div>
+
+            <div class="divider"></div>
+
+            <div class="section">
+              <h3>Желаемая дата получения</h3>
+              <div class="input-field">
+                <input id="delivery_date" name="delivery_date" type="text" class="datepicker" required>
+                <label for="delivery_date">ДД.ММ.ГГГГ</label>
+              </div>
+            </div>
+
+            <button class="btn waves-effect waves-light submit-btn" type="submit">
+              ПОВТОРИТЬ ЗАЯВКУ
+              <i class="material-icons right">send</i>
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const dateElems = document.querySelectorAll('.datepicker');
+    M.Datepicker.init(dateElems, {
+      format: 'dd.mm.yyyy',
+      autoClose: true,
+      i18n: {
+        cancel: 'Отмена',
+        clear: 'Очистить',
+        done: 'Выбрать',
+        months: ['Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь', 'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь'],
+        monthsShort: ['Янв', 'Фев', 'Мар', 'Апр', 'Май', 'Июн', 'Июл', 'Авг', 'Сен', 'Окт', 'Ноя', 'Дек'],
+        weekdays: ['Воскресенье', 'Понедельник', 'Вторник', 'Среда', 'Четверг', 'Пятница', 'Суббота'],
+        weekdaysShort: ['Вс', 'Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб'],
+        weekdaysAbbrev: ['В', 'П', 'В', 'С', 'Ч', 'П', 'С']
+      }
+    });
+  });
+</script>
