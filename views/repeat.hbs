@@ -74,6 +74,16 @@
               </div>
             </div>
 
+            <div class="divider"></div>
+
+            <div class="section">
+              <h3>Комментарий</h3>
+              <div class="input-field">
+                <textarea id="comment" name="comment" class="materialize-textarea"></textarea>
+                <label for="comment">Дополнительная информация</label>
+              </div>
+            </div>
+
             <button class="btn waves-effect waves-light submit-btn" type="submit">
               ПОВТОРИТЬ ЗАЯВКУ
               <i class="material-icons right">send</i>
@@ -102,5 +112,8 @@
         weekdaysAbbrev: ['В', 'П', 'В', 'С', 'Ч', 'П', 'С']
       }
     });
+    
+    // Инициализация textarea для комментария
+    M.textareaAutoResize($('#comment'));
   });
 </script>

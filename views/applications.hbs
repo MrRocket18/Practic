@@ -1,8 +1,6 @@
 {{!-- <!Страница пользователя с заявками> --}}
 
-
 {{!-- пока что с статичными данными --}}
-
 
 <div class="applications-container">
   <div class="top-panel">
@@ -18,20 +16,6 @@
           </div>
         </div>
         <a href="#" class="btn waves-effect waves-light" style="margin-right: 20px;">Создать заявку</a>
-        <div class="user-info" style="position: relative; display: inline-block;">
-          <a class="dropdown-trigger" href="#" data-target="user-dropdown">
-            <div style="text-align: right;">
-              <div style="font-weight: bold;">Иванов Иван Иванович</div>
-              <div>Менеджер</div>
-            </div>
-            <i class="material-icons right">arrow_drop_down</i>
-          </a>
-          <ul id="user-dropdown" class="dropdown-content">
-            <li><a href="#!">Профиль</a></li>
-            <li class="divider" tabindex="-1"></li>
-            <li><a href="#!" class="red-text">Log out</a></li>
-          </ul>
-        </div>
       </div>
     </div>
   </div>
@@ -62,9 +46,14 @@
           <td>-</td>
           <td>Белый цветок</td>
           <td>
-            <a href="#" class="btn-floating btn-small waves-effect waves-light green">
-              <i class="material-icons">check</i>
-            </a>
+            <div style="display: flex; flex-direction: column; gap: 5px;">
+              <a href="#" class="btn-small waves-effect waves-light blue" title="Редактировать">
+                <i class="material-icons">edit</i>
+              </a>
+              <a href="#" class="btn-small waves-effect waves-light grey" title="Повторить заявку">
+                <i class="material-icons">replay</i>
+              </a>
+            </div>
           </td>
         </tr>
         <tr>
@@ -77,9 +66,14 @@
           <td>18.05.2024</td>
           <td>Белый. Диаметр 15 см</td>
           <td>
-            <a href="#" class="btn-floating btn-small waves-effect waves-light green">
-              <i class="material-icons">check</i>
-            </a>
+            <div style="display: flex; flex-direction: column; gap: 5px;">
+              <a href="#" class="btn-small waves-effect waves-light blue" title="Редактировать">
+                <i class="material-icons">edit</i>
+              </a>
+              <a href="#" class="btn-small waves-effect waves-light grey" title="Повторить заявку">
+                <i class="material-icons">replay</i>
+              </a>
+            </div>
           </td>
         </tr>
         <tr>
@@ -92,9 +86,14 @@
           <td>08.05.2024</td>
           <td>Для орхидей</td>
           <td>
-            <a href="#" class="btn-floating btn-small waves-effect waves-light green">
-              <i class="material-icons">check</i>
-            </a>
+            <div style="display: flex; flex-direction: column; gap: 5px;">
+              <a href="#" class="btn-small waves-effect waves-light blue" title="Редактировать">
+                <i class="material-icons">edit</i>
+              </a>
+              <a href="#" class="btn-small waves-effect waves-light grey" title="Повторить заявку">
+                <i class="material-icons">replay</i>
+              </a>
+            </div>
           </td>
         </tr>
         <tr>
@@ -107,9 +106,14 @@
           <td>-</td>
           <td>Розовые</td>
           <td>
-            <a href="#" class="btn-floating btn-small waves-effect waves-light green">
-              <i class="material-icons">check</i>
-            </a>
+            <div style="display: flex; flex-direction: column; gap: 5px;">
+              <a href="#" class="btn-small waves-effect waves-light blue" title="Редактировать">
+                <i class="material-icons">edit</i>
+              </a>
+              <a href="#" class="btn-small waves-effect waves-light grey" title="Повторить заявку">
+                <i class="material-icons">replay</i>
+              </a>
+            </div>
           </td>
         </tr>
       </tbody>
@@ -164,4 +168,3 @@
     });
   });
 </script>
-

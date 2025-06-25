@@ -68,31 +68,31 @@ app.use(fileUpload({
 
 app.use(express.json()); // long application/json
 
-app.use(async function (req, res, next) {
-    let page = req._parsedOriginalUrl.pathname;
-    // console.log('Cookie:', req.headers.cookie);
+// app.use(async function (req, res, next) {
+//     let page = req._parsedOriginalUrl.pathname;
+//     // console.log('Cookie:', req.headers.cookie);
 
-    // if (page!='/data') {
-    //         mlog(page,req.session.uid,req.session.name,req.session.info,req.headers['nip'],hlp.getcurip(req.socket.remoteAddress),req.query)
-    //     }
+//     // if (page!='/data') {
+//     //         mlog(page,req.session.uid,req.session.name,req.session.info,req.headers['nip'],hlp.getcurip(req.socket.remoteAddress),req.query)
+//     //     }
     
-    // //next();
-    // //return 1
-    // if (page=='/data') {
-    //     next();
-    //     //return 1
-    // }
+//     // //next();
+//     // //return 1
+//     // if (page=='/data') {
+//     //     next();
+//     //     //return 1
+//     // }
 
-    if (req.session.uid==undefined) { 
-        if (page!='/' ) {
-            res.redirect("/")
-        } else next();
-    } else {
-        if (page=='/') {
-            res.redirect("/applications")
-        } else next();
-    } 
-})
+//     if (req.session.uid==undefined) { 
+//         if (page!='/' ) {
+//             res.redirect("/")
+//         } else next();
+//     } else {
+//         if (page=='/') {
+//             res.redirect("/applications")
+//         } else next();
+//     } 
+// })
 
 app.get('/', (req, res) => {
   res.render('authorization', {
@@ -183,6 +183,12 @@ app.get('/edit', (req, res) => {
 app.get('/repeat', (req, res) => {
   res.render('repeat', {
     title: 'Repeat request'
+  });
+});
+
+app.get('/admin', (req, res) => {
+  res.render('all_applic_admin', {
+    title: 'request'
   });
 });
 
