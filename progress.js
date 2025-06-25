@@ -18,6 +18,7 @@ import path from 'path';
 import fs from 'fs-extra';
 import 'dotenv/config';
 import * as db from './vendor/db.mjs';
+import bcrypt from 'bcryptjs';
 
 import { type } from 'os';
 
@@ -67,12 +68,76 @@ app.use(fileUpload({
 
 app.use(express.json()); // long application/json
 
+app.use(async function (req, res, next) {
+    let page = req._parsedOriginalUrl.pathname;
+    // console.log('Cookie:', req.headers.cookie);
+
+    // if (page!='/data') {
+    //         mlog(page,req.session.uid,req.session.name,req.session.info,req.headers['nip'],hlp.getcurip(req.socket.remoteAddress),req.query)
+    //     }
+    
+    // //next();
+    // //return 1
+    // if (page=='/data') {
+    //     next();
+    //     //return 1
+    // }
+
+    if (req.session.uid==undefined) { 
+        if (page!='/' ) {
+            res.redirect("/")
+        } else next();
+    } else {
+        if (page=='/') {
+            res.redirect("/applications")
+        } else next();
+    } 
+})
+
 app.get('/', (req, res) => {
   res.render('authorization', {
     title: 'Authorization'
   });
 });
 
+app.post('/', async(req, res) => {
+  console.log(req.body);
+
+  // const {email, password} = req.body;
+  let email = req.body.email;
+  let password = req.body.password;
+
+  if (!email) {
+    return res.status(400).send("Email required");
+  }
+  if (!password){
+    return res.status(400).send("Password required");
+  }
+  try{
+    const user = await db.auth_user({email});
+    console.log(user)
+
+    if (!user){
+      return res.status(401).send("Invalid credentials");
+    }
+    const isPassword = await bcrypt.compare(password, user.password);
+
+    if (isPassword) {
+      req.session.uid = user.ID;
+      req.session.name = user.name;
+      const roles = await db.get_roles(req.session.uid);
+      req.session.roles = roles;
+      mlog(req.session.roles);
+      res.send('ok')
+    }
+    else{
+      return res.status(401).send("Invalid credentails");
+    }
+  } catch(error){
+    console.error("Ошибка аунтефикации:", error);
+    res.status(500).send('Internal Server Error');
+  }
+})
 // app.get('/user', (req, res) => {
 //   res.render('applications', {
 //     title: 'My requests'
