@@ -1,1 +1,59 @@
-<!НАВИГАЦИОННАЯ ПАНЕЛЬ>
+{{!-- <!НАВИГАЦИОННАЯ ПАНЕЛЬ> --}}
+
+<nav class="nav-extended">
+  <div class="nav-wrapper">
+    <a href="#" class="brand-logo left">
+      <img src="logo.png" alt="Логотип" class="logo-img" style="height: 50px; margin: 5px 15px;">
+      <span class="hide-on-med-and-down">Название системы</span>
+    </a>
+    
+    <ul id="nav-mobile" class="right">
+      <li>
+        <a href="#!" class="dropdown-trigger" data-target="user-dropdown">
+          <i class="material-icons left">account_circle</i>
+          <span class="hide-on-med-and-down">Иванов Иван Иванович</span>
+          <i class="material-icons right">arrow_drop_down</i>
+        </a>
+      </li>
+      <li>
+        <a href="/logout" class="tooltipped" data-tooltip="Выйти">
+          <i class="material-icons">exit_to_app</i>
+        </a>
+      </li>
+    </ul>
+    
+    <ul id="user-dropdown" class="dropdown-content">
+      <li><a href="#!"><i class="material-icons">person</i>Профиль</a></li>
+      <li><a href="#!"><i class="material-icons">settings</i>Настройки</a></li>
+      <li class="divider" tabindex="-1"></li>
+      <li><a href="/logout"><i class="material-icons">exit_to_app</i>Выйти</a></li>
+    </ul>
+  </div>
+  
+  <div class="nav-content">
+    <ul class="tabs tabs-transparent">
+      <li class="tab"><a href="#dashboard">Главная</a></li>
+      <li class="tab"><a href="#orders">Заказы</a></li>
+      <li class="tab"><a href="#users">Пользователи</a></li>
+      <li class="tab"><a href="#reports">Отчеты</a></li>
+    </ul>
+  </div>
+</nav>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const dropdowns = document.querySelectorAll('.dropdown-trigger');
+    M.Dropdown.init(dropdowns, {
+      alignment: 'left',
+      constrainWidth: false,
+      coverTrigger: false
+    });
+    
+    const tooltips = document.querySelectorAll('.tooltipped');
+    M.Tooltip.init(tooltips);
+    
+    const tabs = document.querySelectorAll('.tabs');
+    M.Tabs.init(tabs);
+  });
+</script>
+
