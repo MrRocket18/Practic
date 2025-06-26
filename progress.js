@@ -151,7 +151,7 @@ app.post('/create', async (req, res) => {
     const result = await db.createRequest({user_id, item_name, count, price, link, desired_date, comment});
 
     if (result.success) {
-      return res.redirect("/applications")
+      return res.redirect("/applications")//Если убрать return запись в БД будет несколько раз
     } else {
       return res.status(500).json({ success: false, message: result.message });
     }
