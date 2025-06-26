@@ -66,3 +66,33 @@ export async function get_roles(ID) {
   }
 }
 
+export async function createRequest(orderData) {
+    
+    try {
+        const { user_id, item_name, count, price, link, desired_date, comment } = orderData;
+        // Преобразуем дату
+        const formattedDate = formatDate(desired_date);
+
+        // Преобразуем числа
+        const parsedCount = parseInt(count, 10);
+        const parsedPrice = parseFloat(price);
+
+        // Устанавливаем статус по умолчанию
+        const status = 'На рассмотрении';
+
+        // Выполняем запрос
+        const [result] = await pool.query(
+            'INSERT INTO Request (user_id, item_name, count, price, link, desired_date, status, comment) VALUES (?, ?, ?, ?, ?, ?, ?, ?)',
+            [user_id, item_name, parsedCount, parsedPrice, link, formattedDate, status, comment || '']
+        );
+
+        return { success: true, insertId: result.insertId };
+    } catch (error) {
+        console.error('Произошла ошибка при отправке заявки', error)
+        throw error;
+    }
+}
+function formatDate(ruDate) {
+  const [day, month, year] = ruDate.split('.');
+  return `${year}-${month}-${day}`;
+}

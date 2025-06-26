@@ -138,6 +138,29 @@ app.post('/', async(req, res) => {
     res.status(500).send('Internal Server Error');
   }
 })
+
+app.post('/create', async (req, res) => {
+  try {
+    console.log("req.body:", req.body);
+
+    const user_id = req.session.uid;
+    const { item_name, count, price, link, desired_date, comment } = req.body;
+
+    console.log("Вызываю createRequest с:", {user_id, item_name, count, price, link, desired_date, comment});
+
+    const result = await db.createRequest({user_id, item_name, count, price, link, desired_date, comment});
+
+    if (result.success) {
+      return res.redirect("/applications")
+    } else {
+      return res.status(500).json({ success: false, message: result.message });
+    }
+
+  } catch (error) {
+    console.error("Полная ошибка:", error);
+    return res.status(500).send("Произошла внутренняя ошибка сервера");
+  }
+});
 // app.get('/user', (req, res) => {
 //   res.render('applications', {
 //     title: 'My requests'
