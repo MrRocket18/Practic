@@ -1,8 +1,10 @@
 {{> head}}
 <body>
-    {{> navbar}}
-    <div class = "container">
-        {{{ body }}}
+    {{#unless isAuthPage}}
+        {{> navbar}}
+    {{/unless}}
+    <div class="container">
+        {{{body}}}
     </div>
     <script src="/main.js"></script>
 </body>

@@ -1,10 +1,34 @@
-{{!-- <!НАВИГАЦИОННАЯ ПАНЕЛЬ> --}}
+<style>
+  .custom-navbar {
+    background-color: #b39ddb !important;
+  }
+  
+  .nav-extended {
+    box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 
+                0 3px 1px -2px rgba(0,0,0,0.12), 
+                0 1px 5px 0 rgba(0,0,0,0.2);
+  }
+  
+  .logo-img {
+    height: 50px;
+    margin: 5px 15px;
+    vertical-align: middle;
+  }
+  
+  .dropdown-content {
+    background-color: white;
+  }
+  
+  .tabs .indicator {
+    background-color: #7e57c2; /* deep-purple accent-2 для индикатора */
+  }
+</style>
 
-<nav class="nav-extended">
+<nav class="nav-extended custom-navbar">
   <div class="nav-wrapper">
     <a href="#" class="brand-logo left">
-      <img src="logo.png" alt="Логотип" class="logo-img" style="height: 50px; margin: 5px 15px;">
-      <span class="hide-on-med-and-down">Название системы</span>
+      <img src="Logo.png" alt="Логотип" class="logo-img">
+      <span class="hide-on-med-and-down">B2B Flow</span>
     </a>
     
     <ul id="nav-mobile" class="right">
@@ -56,4 +80,3 @@
     M.Tabs.init(tabs);
   });
 </script>
-

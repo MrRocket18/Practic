@@ -9,43 +9,33 @@
           
           <form class="edit-form" action="/edit" method="POST">
             <div class="input-field">
-              <label>
-                <input type="checkbox" class="filled-in toggle-edit" data-target="title" />
-                <span>Название</span>
-              </label>
-              <input id="title" name="title" type="text" class="validate" disabled>
+              <input id="title" name="title" type="text" class="validate">
+              <label for="title">Название</label>
             </div>
             
             <div class="input-field">
-              <label>
-                <input type="checkbox" class="filled-in toggle-edit" data-target="quantity" checked="checked" />
-                <span>Количество</span>
-              </label>
               <input id="quantity" name="quantity" type="number" class="validate" min="1" required>
+              <label for="quantity">Количество</label>
             </div>
             
             <div class="input-field">
-              <label>
-                <input type="checkbox" class="filled-in toggle-edit" data-target="price" />
-                <span>Цена</span>
-              </label>
-              <input id="price" name="price" type="number" class="validate" min="0" step="0.01" disabled>
+              <input id="price" name="price" type="number" class="validate" min="0" step="0.01">
+              <label for="price">Цена</label>
             </div>
             
             <div class="input-field">
-              <label>
-                <input type="checkbox" class="filled-in toggle-edit" data-target="link" />
-                <span>Ссылка</span>
-              </label>
-              <input id="link" name="link" type="url" class="validate" disabled>
+              <input id="link" name="link" type="url" class="validate">
+              <label for="link">Ссылка</label>
             </div>
             
             <div class="input-field">
-              <label>
-                <input type="checkbox" class="filled-in toggle-edit" data-target="date" />
-                <span>Дата</span>
-              </label>
-              <input id="date" name="date" type="text" class="datepicker" disabled>
+              <input id="date" name="date" type="text" class="datepicker">
+              <label for="date">Дата</label>
+            </div>
+            
+            <div class="input-field">
+              <textarea id="comment" name="comment" class="materialize-textarea"></textarea>
+              <label for="comment">Комментарий</label>
             </div>
             
             <button class="btn waves-effect waves-light submit-btn" type="submit">
@@ -77,16 +67,7 @@
       }
     });
 
-    document.querySelectorAll('.toggle-edit').forEach(checkbox => {
-      checkbox.addEventListener('change', function() {
-        const targetId = this.getAttribute('data-target');
-        const inputField = document.getElementById(targetId);
-        inputField.disabled = !this.checked;
-        
-        if (!inputField.disabled) {
-          inputField.focus();
-        }
-      });
-    });
+    // Инициализация textarea для комментариев
+    M.textareaAutoResize($('#comment'));
   });
 </script>
